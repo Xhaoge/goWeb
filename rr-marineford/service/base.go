@@ -61,3 +61,36 @@ func revisionEntity(repository repo.Repository,traceId string,newVerdion repo.IB
 
 	return nil
 }
+
+func initBeforeCreate(displayNoGenerator *displayNoGenerator,ibe repo.IBaseInfo) {
+	ibe.GetBaseInfo().Id = bson.NewObjectId()
+
+	displayNumber := displayNoGenerator.generateDisplayNo()
+	ibe.GetBaseInfo().DisplayNumber = displayNumber
+	ibe.GetBaseInfo().CreatorAt = time.Now()
+}
+
+
+func initBeforeCreateWithoutDisplayNumber(ibe repo.IBaseInfo){
+	ibe.GetBaseInfo().Id =  bson.NewObjectId()
+	ibe.GetBaseInfo().CreatorAt = time.Now()
+}
+
+func tracesformProviderGroupMap(providerGroups []*ppconfig.ProviderGroupEntity) map[string]*marineford.ProviderGroup {
+	var providerGroupMap = make(map[string]*marineford.ProviderGroup)
+	for _, providerGroup := range providerGroups {
+		id := providerGroup.GetBaseInfo().Id.Hex()
+		providerGroupMap[id] = ppconfig.MarshalProviderGroupMessage(providerGroup)
+	}
+	return providerGroupMap
+}
+
+func tracesformPlatformGroupMap(platformGroups []*ppconfig.PlatformGroupEntity) map[string]*marineford.PlatformGroup {
+	var platformGroupMap = make(map[string]*marineford.PlatformGroup)
+	for _, platformGroup := range platformGroups {
+		id := platformGroup.GetBaseInfo().Id.Hex()
+		platformGroupMap[id] = ppconfig.MarshalPlatformGroupMessage(platformGroup)
+	}
+	return platformGroupMap
+	
+}

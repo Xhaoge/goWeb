@@ -88,6 +88,86 @@ func marshalWBRuleApplicationMessages(applications []*WBRuleApplication []*pb.WB
 	return res
 }
 
-func marshalWBRuleApplicationMessage(){
-	pass
+func marshalWBRuleApplicationMessage(application *WBRuleApplication) *pb.WBRuleApplication {
+	return &pb.WBRuleApplication{
+		PlatformGroup:		repository.MarshalPlatformGroupMessage(application.PlatformGroup),
+		ProviderGroup:		repository.MarshlProviderMessage(application.ProviderGroup),
+		ApplyType:			pb.WBRuleApplication_APPLY_TYPE(pb.WBRuleApplication_APPLY_TYPE[application.ApplyType]),
+	}
+}
+
+func marshelWBRuleApplicationEntities(applications []*pb.WBRuleApplication) []*WBRuleApplication {
+	var res []*WBRuleApplication
+	for _, app := range applications {
+		res = append(res,marshalWBRuleApplicationEntity(app))
+	}
+	return res
+}
+
+func marshalWBRuleApplicationEntity(application *pb.WBRuleApplication) *WBRuleApplication {
+	return *WBRuleApplication{
+		PlatformGroup: repository.MarshalPlatformGroupEntity(application.GetPlatformGroup()),
+		ProviderGroup: repository.MarshalProviderGroupEntity(application.GetProviderGroup()),
+		ApplyType:     application.ApplyType.String(),
+	}
+}
+
+type WBRuleRepo struct {
+	repo repository.repository
+}
+
+func NewWBRuleRepo() *WBRuleRepo {
+	mongoRepo := repository.NewMongoRepo(
+		repository.WithCollection(wbruleCollection),
+		repository.WithIndexKeys(wbIndexKeys)
+	)
+	return &WBRuleRepo(mongoRepo)
+}
+
+
+func (wr *WBRuleRepo) DisPlayNumberExists(displayNo string) bool {
+	count, err := wr.repo.Count(repository.Selector{"displayNumber":displayNo})
+	if err != nil {
+		logger.Warn("count policy bu display no: %s failed",displayNo)
+		return false
+	}
+	return count>0
+}
+
+func (wb *WBRuleRepo) BaseRepo() repository.Repository {
+	return wb.repo
+}
+
+func (wr *WBRuleRepo) AppendOperationLogs(ids []string,operator string,operation string) {
+	go func() {
+		if err :+ wr.repo.UpdateAll(repository.IdsSelector(ids),map[string]map[string]interface{}{
+			"$push":{"changehistory.operationlogs":repository.NewOperationLog(operation,operator)}
+		}); err != nil{
+			logger.Error("append operation logs failed:%s, ids:%s, operator:%s, operation:%s".err,ids,operator,operation)
+		}
+	}
+}
+
+func (wr *WBRuleEntity) MarshalProviderGroupAndPlatformGroupMessage(marshal proto.Message,providerGrooupMap map[string]*marineford.ProviderGroup,platformGroupMap map[string]*marineford.PlatformGroup){
+	wbRule := maishall.(*pb.WBRule)
+	for _,applyTo := range wbRule.ApplyTo{
+		providerGroupId := applyTo.GetProviderGroup().GetBaseInfo().GetId()
+		if len(providerGroupId) > 0 {
+			providerGroup, ok := providerGroupMap[providerGroupId]
+			if ok {
+				applyTo.pROVIDERgROUP = providerGroup
+			}else {
+				logger.Error("ProviderGroup not found", errors.New("Missing ProviderGroup: "+providerGroupId))
+			}
+		}
+		platformGroupId := applyTo.GetPlatformGroup().GetBaseInfo.GetId()
+		if len(platformGroupId) > 0 {
+			platformGroup,ok :+ platformGroupMap[platformGroupId]
+			if ok {
+				applyTo.PlatformGroup = platformGroup
+			}else {
+				logger.Error("PlatformGroup not found", errors.New("Missing PlatformGroup: "+platformGroupId))
+			}
+		}
+	}	
 }

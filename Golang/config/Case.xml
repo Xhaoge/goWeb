@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    # 配置此时需要run的测试用例；
+    <RunCase>
+        # search case
+        <!--<case>-->
+            <!--<id>Case_Search_KeyValue_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_KeyValue_0001</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Search_KeyValue_0002</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_KeyValue_0002</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Search_KeyValue_0003</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_KeyValue_0003</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Search_KeyValue_0004</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_KeyValue_0004</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Search_PlatConfig_RepeatFareRule_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_PlatConfig_RepeatFareRule_0001</Address>-->
+        <!--</case>-->
+
+        <!--<case>-->
+            <!--<id>Case_Search_ProvConfig_RepeatFareRule_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_ProvConfig_RepeatFareRule_0001</Address>-->
+        <!--</case>-->
+
+        <!--<case>-->
+            <!--<id>Case_Search_Test_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Search.Case_Search_Test_0001</Address>-->
+        <!--</case>-->
+
+        # verify case
+        <!--<case>-->
+            <!--<id>Case_Verify_KeyValue_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Verify.Case_Verify_KeyValue_0001</Address>-->
+        <!--</case>-->
+
+        # order case
+        <!--<case>-->
+            <!--<id>Case_Order_KeyValue_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Order.Case_Order_KeyValue_0001</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Order_KeyValue_0002</id>-->
+            <!--<Address>AllBlue.TestCase.Order.Case_Order_KeyValue_0002</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Order_KeyValue_0003</id>-->
+            <!--<Address>AllBlue.TestCase.Order.Case_Order_KeyValue_0003</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Order_KeyValue_0004</id>-->
+            <!--<Address>AllBlue.TestCase.Order.Case_Order_KeyValue_0004</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Order_KeyValue_0005</id>-->
+            <!--<Address>AllBlue.TestCase.Order.Case_Order_KeyValue_0005</Address>-->
+        <!--</case>-->
+
+
+        # currency case
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0001</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0002</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0002</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0003</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0003</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0004</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0004</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0005</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0005</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0006</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0006</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_FromToRate_0007</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_FromToRate_0007</Address>-->
+        <!--</case>-->
+
+        <!--<case>-->
+            <!--<id>Case_Currency_OVNDtoCNY_0101</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_OVNDtoCNY_0101</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Currency_OAutoRise_0103</id>-->
+            <!--<Address>AllBlue.TestCase.Currency.Case_Currency_OAutoRise_0103</Address>-->
+        <!--</case>-->
+
+
+        # others case
+        <!--<case>-->
+            <!--<id>Case_Others_Platform_Update</id>-->
+            <!--<Address>AllBlue.TestCase.Others.Case_Others_Platform_Update</Address>-->
+        <!--</case>-->
+        <!--<case>-->
+            <!--<id>Case_Others_Farerule_Select</id>-->
+            <!--<Address>AllBlue.TestCase.Others.Case_Others_Farerule_Select</Address>-->
+        <!--</case>-->
+        <case>
+            <id>Case_Others_Sslion_Search</id>
+            <Address>AllBlue.TestCase.Others.Case_Others_Sslion_Search</Address>
+        </case>
+
+        ## ctrip
+        <!--<case>-->
+            <!--<id>Case_Ctrip_Verify_0001</id>-->
+            <!--<Address>AllBlue.TestCase.Verify.Ctrip.Case_Ctrip_Verify_0001</Address>-->
+        <!--</case>-->
+
+
+    </RunCase>
+</doc>

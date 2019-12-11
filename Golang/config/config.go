@@ -2,7 +2,27 @@ package config
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	yaml "gopkg.in/yaml.v2"
 )
+
+
+func init() {
+	conf := new(Yaml)
+	dir,_ := os.Getwd()
+	str := dir+"/config/config.yaml"
+	fmt.Println("str:",str)
+	yamlFile, err := ioutil.ReadFile(str)
+	log.Println("yamlFile:\n",string(yamlFile))
+	if err != nil {
+		log.Printf("%v:",err)
+	}
+	err = yaml.Unmarshal(yamlFile,conf)
+	fmt.Println("conf:",conf.Mysql)
+}
+
 
 func config(){
 	fmt.Println("config")

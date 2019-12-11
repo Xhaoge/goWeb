@@ -12,7 +12,7 @@ import (
 func init() {
 	conf := new(Yaml)
 	dir,_ := os.Getwd()
-	str := dir+"/config/config.yaml"
+	str := dir+`\config\config.yaml`
 	fmt.Println("str:",str)
 	yamlFile, err := ioutil.ReadFile(str)
 	log.Println("yamlFile:\n",string(yamlFile))
@@ -21,6 +21,7 @@ func init() {
 	}
 	err = yaml.Unmarshal(yamlFile,conf)
 	fmt.Println("conf:",conf.Mysql)
+	ReadCaseXML()
 }
 
 

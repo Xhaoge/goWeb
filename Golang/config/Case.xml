@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doc>
-    <Config>
-       <enabled>true</enabled>
-       <path>searchCase_0001</path>
-    </Config>  
-</doc>
+<Config>
+    <!-- <enabled>true</enabled>
+    <path>searchCase_0001</path> -->
+    <case>
+        <module>search</module>
+        <casename>searchCase_0001</casename>
+    </case>
+    <case>
+        <module>search</module>
+        <casename>searchCase_0002</casename>
+    </case>
+
+</Config>  

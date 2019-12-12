@@ -7,29 +7,25 @@ import (
 	"io/ioutil"
 )
 
-type Cases struct {
-	Case	[]Case
+type Config struct {
+	Cases	[]Case  	`xml:"case"`
 }
 
-
 type Case struct {
-	Module		string `xml:"module"`
+	Package		string `xml:"package"`
 	Casename    string `xml:"casename"`
 }
 
-
-type Configuration struct {
-	Enabled		bool 	`xml:"enabled"`
-	Path 		string 	`xml:"path"`
-}
+// type Configuration struct {
+// 	Enabled		bool 	`xml:"enabled"`
+// 	Path 		string 	`xml:"path"`
+// }
 
 func ReadCaseXML(){
 	dir1,_ := os.Getwd()
-	fmt.Println("dir1:",dir1)
 	dir := dir1 + `\config\case.xml`
 	fmt.Println("dir1:",dir)
 	File, err := os.Open(dir)
-	fmt.Println(File)
 	if err != nil {
 		fmt.Println("error opening file:",err)
 		return
@@ -51,16 +47,15 @@ func ReadCaseXML(){
 		return 
 	}
 
-	test := Cases{}
+	test := Config{}
 	err = xml.Unmarshal(xmlFile,&test)
 	if err != nil {
 		fmt.Println(err)
 		return 
 	}
 	fmt.Println("test:",test)
-	for _,c := range test.Case {
+	for _,c := range test.Cases {
+		fmt.Println("Package:",c.Package)
 		fmt.Println("Casename:",c.Casename)
 	}
-
-
 }

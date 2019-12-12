@@ -10,6 +10,12 @@ import (
 
 
 func init() {
+	ReadYamlConfig()
+	ReadCaseXML()
+}
+
+
+func ReadYamlConfig(){
 	conf := new(Yaml)
 	dir,_ := os.Getwd()
 	str := dir+`\config\config.yaml`
@@ -21,12 +27,6 @@ func init() {
 	}
 	err = yaml.Unmarshal(yamlFile,conf)
 	fmt.Println("conf:",conf.Mysql)
-	ReadCaseXML()
-}
-
-
-func config(){
-	fmt.Println("config")
 }
 
 type Yaml struct {

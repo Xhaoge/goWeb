@@ -7,4 +7,4 @@ mysql:
   password: Tech2501
   host: 1011.22.33
   port: 3306
-  name: cwi
+  name: xhaoge

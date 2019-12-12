@@ -3,12 +3,32 @@
     <!-- <enabled>true</enabled>
     <path>searchCase_0001</path> -->
     <case>
-        <module>search</module>
+        <package>search</package>
         <casename>searchCase_0001</casename>
     </case>
     <case>
-        <module>search</module>
+        <package>search</package>
         <casename>searchCase_0002</casename>
+    </case>
+    <case>
+        <package>search</package>
+        <casename>searchCase_0003</casename>
+    </case>
+    <case>
+        <package>search</package>
+        <casename>searchCase_0004</casename>
+    </case>
+    <case>
+        <package>verify</package>
+        <casename>verifyCase_0001</casename>
+    </case>
+    <case>
+        <package>verify</package>
+        <casename>verifyCase_0002</casename>
+    </case>
+    <case>
+        <package>verify</package>
+        <casename>verifyCase_0003</casename>
     </case>
 
 </Config>  

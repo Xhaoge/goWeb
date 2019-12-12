@@ -7,6 +7,8 @@ import (
 	"io/ioutil"
 )
 
+var CaseConfig = Config{}
+
 type Config struct {
 	Cases	[]Case  	`xml:"case"`
 }
@@ -47,14 +49,14 @@ func ReadCaseXML(){
 		return 
 	}
 
-	test := Config{}
-	err = xml.Unmarshal(xmlFile,&test)
+	
+	err = xml.Unmarshal(xmlFile,&CaseConfig)
 	if err != nil {
 		fmt.Println(err)
 		return 
 	}
-	fmt.Println("test:",test)
-	for _,c := range test.Cases {
+	fmt.Println("test:",CaseConfig)
+	for _,c := range CaseConfig.Cases {
 		fmt.Println("Package:",c.Package)
 		fmt.Println("Casename:",c.Casename)
 	}

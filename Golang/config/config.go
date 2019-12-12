@@ -8,15 +8,16 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
-
+var BaseConfig = new(Yaml)
 func init() {
 	ReadYamlConfig()
 	ReadCaseXML()
+	fmt.Println("CaseConfig:",CaseConfig)
 }
 
 
 func ReadYamlConfig(){
-	conf := new(Yaml)
+	//conf := new(Yaml)
 	dir,_ := os.Getwd()
 	str := dir+`\config\config.yaml`
 	fmt.Println("str:",str)
@@ -25,8 +26,8 @@ func ReadYamlConfig(){
 	if err != nil {
 		log.Printf("%v:",err)
 	}
-	err = yaml.Unmarshal(yamlFile,conf)
-	fmt.Println("conf:",conf.Mysql)
+	err = yaml.Unmarshal(yamlFile,BaseConfig)
+	fmt.Println("BaseConfig:",BaseConfig.Mysql)
 }
 
 type Yaml struct {
@@ -41,18 +42,6 @@ type Yaml struct {
 		Enable  bool `yaml:"enable"`
 		List	[]string `yaml:"list,flow"`
 	}
-}
-
-
-type Yaml1 struct {
-	SQLConf Mysql `yaml:"mysql"`
-	CacheConf Cache `yaml:"cache"`
-}
-
-
-type Yaml12 struct {
-	Mysql 	`yaml:"mysql,inline"`
-	Cache 	`yaml:"cache,inline"`
 }
 
 type Mysql struct {

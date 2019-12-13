@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"Pro_golang/Golang/config"
+	"Pro_golang/Golang/TestCase/SearchCase"
 )
 
 func main(){
 	fmt.Println("hello world.......")
-	fmt.Println("CaseConfig main: ",config.CaseConfig)
-	fmt.Println("BaseConfig main: ",config.BaseConfig)
+	fmt.Printf("CaseConfig main:%+v \n",config.CaseConfig)
+	fmt.Printf("BaseConfig main: %+v \n",config.BaseConfig)
+	searchCase.RunCaseProcess()
 }
 

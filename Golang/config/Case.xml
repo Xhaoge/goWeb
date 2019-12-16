@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Config>
+    <!-- <case>
+        <package>search</package>
+        <casename>SearchCase_0001</casename>
+    </case> -->
     <case>
         <package>search</package>
-        <casename>searchCase_0001</casename>
+        <casename>SearchCase_0002</casename>
     </case>
-    <case>
+    <!-- <case>
         <package>search</package>
-        <casename>searchCase_0002</casename>
-    </case>
-    <case>
+        <casename>SearchCase_0003</casename>
+    </case> -->
+    <!-- <case>
         <package>search</package>
-        <casename>searchCase_0003</casename>
-    </case>
-    <case>
-        <package>search</package>
-        <casename>searchCase_0004</casename>
+        <casename>SearchCase_0004</casename>
     </case>
     <case>
         <package>verify</package>
-        <casename>verifyCase_0001</casename>
+        <casename>VerifyCase_0001</casename>
     </case>
     <case>
         <package>verify</package>
-        <casename>verifyCase_0002</casename>
+        <casename>VerifyCase_0002</casename>
     </case>
     <case>
         <package>verify</package>
-        <casename>verifyCase_0003</casename>
-    </case>
+        <casename>VerifyCase_0003</casename>
+    </case> -->
 
 </Config>  

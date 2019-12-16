@@ -8,6 +8,9 @@ import (
 )
 
 var CaseConfig = Config{}
+/* 
+CaseConfig = {[{search searchCase_0001} {search searchCase_0002} {verify verifyCase_0001}]}
+*/
 
 type Config struct {
 	Cases	[]Case  	`xml:"case"`

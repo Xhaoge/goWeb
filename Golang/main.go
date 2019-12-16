@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"Pro_golang/Golang/config"
 	"Pro_golang/Golang/TestCase/SearchCase"
+	_"Pro_golang/Golang/utils"
 )
 
 func main(){

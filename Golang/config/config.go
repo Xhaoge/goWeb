@@ -9,10 +9,10 @@ import (
 )
 
 var BaseConfig = new(Yaml)
+
 func init() {
 	ReadYamlConfig()
 	ReadCaseXML()
-	fmt.Println("CaseConfig:",CaseConfig)
 }
 
 

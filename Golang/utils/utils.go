@@ -14,7 +14,9 @@ func Utils() {
 	fmt.Println("this is utils package")
 }
 
-
+func CaseRunMethod interface{
+	RunCaseProcess()
+}
 
 func init(){
 	fmt.Println("this is utils package")

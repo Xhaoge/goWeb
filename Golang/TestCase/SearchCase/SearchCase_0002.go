@@ -1,4 +1,4 @@
-package searchCase
+package SearchCase
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ type SearchCase_0002 struct {}
 
 
 func  (n *SearchCase_0002)RunCaseProcess(){
-	fmt.Println("case2 runcaseprocess")
+	fmt.Println("this is case2 runcaseprocess")
 	// url := `http://dev-api.gloryholiday.com/yuetu/search`
 	// data := `{
 	// 		    "Cid": "ctrip",

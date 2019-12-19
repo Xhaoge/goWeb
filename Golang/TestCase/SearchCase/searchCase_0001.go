@@ -1,4 +1,4 @@
-package searchCase
+package SearchCase
 
 import (
 	"fmt"

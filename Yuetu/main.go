@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"Pro_golang/Yuetu/controller"
+	_"Pro_golang/Yuetu/Case"
 )
 
 func main(){

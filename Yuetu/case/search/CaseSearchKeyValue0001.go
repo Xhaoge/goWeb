@@ -2,11 +2,14 @@ package searchCase
 
 import (
 	"fmt"
+	"Pro_golang/Yuetu/case"
 )
 
-type CaseSearchKeyValue0001 struct{}
 
-var CaseSearchKeyValue0001 = CaseSearchKeyValue0001{}
+var CaseSearchKeyValue0001 = case.CaseStruct{
+	"CaseSearchKeyValue0001","searchcase"
+}
+case.SearchList = append(SearchList,CaseSearchKeyValue0001)
 
 func (s CaseSearchKeyValue0001)TestInit(){
 	fmt.Println("this is CaseSearchKeyValue0001 TestInit")

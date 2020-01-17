@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-
+	"crypto/md5"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
@@ -66,4 +66,10 @@ func ModifyDB(sql string, args ...interface{}) (int64, error) {
 //查询数据库
 func QueryRowDB(sql string) *sql.Row {
 	return db.QueryRow(sql)
+}
+
+// 添加工具方法
+func MD5(str string) string{
+	md5str := fmt.Sprintf("%x",md5.Sum([]byte(str)))
+	return md5str
 }

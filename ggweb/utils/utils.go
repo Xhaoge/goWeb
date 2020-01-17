@@ -65,7 +65,9 @@ func ModifyDB(sql string, args ...interface{}) (int64, error) {
 
 //查询数据库
 func QueryRowDB(sql string) *sql.Row {
-	return db.QueryRow(sql)
+	row := db.QueryRow(sql)
+	fmt.Println("row：",row)
+	return row
 }
 
 // 添加工具方法

@@ -47,5 +47,6 @@ func QueryUserWithUsername(username string) int {
 //根据用户名和密码，查询id
 func QueryUserWithParam(username, password string) int {
 	sql := fmt.Sprintf("where username='%s' and password='%s'", username, password)
+	fmt.Println("sql:",sql)
 	return QueryUserWightCon(sql)
 }

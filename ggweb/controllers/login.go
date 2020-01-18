@@ -10,6 +10,10 @@ type LoginController struct{
 	beego.Controller
 }
 
+type ExitController struct {
+	BaseController
+}
+
 
 // 定义login 页面get请求；
 
@@ -29,10 +33,21 @@ func (this *LoginController) Post(){
 	id := models.QueryUserWithParam(username,password)
 	fmt.Println("login 登录时查询到的Id号为：",id)
 	if id > 0 {
+		/*
+			设置了session后将数据处理到cookie，然后再浏览器进行网络请求的时候会自动带上cookie，
+			因为我们可以通过获取这个cookie来判断用户是谁，这里我们使用的是session的方式进行设置；
+		*/
+		this.SetSession("loginuser",username)
 		this.Data["json"] = map[string]interface{}{"code":1,"message":"登录成功"}
 	} else{
 		this.Data["json"] = map[string]interface{}{"code":0,"message":"登录失败"}
 	}
 	this.ServeJSON()
+}
 
+// 定义exit 控制器；
+func (this *ExitController) Get(){
+	// 清除该用户登录状态的熟；
+	this.DelSession("loginuser")
+	this.Redirect("/",302)
 }

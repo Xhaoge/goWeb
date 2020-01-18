@@ -1,13 +1,13 @@
 package utils
 
 import (
+	"crypto/md5"
 	"database/sql"
 	"fmt"
-	"log"
-	"crypto/md5"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
+	"log"
 )
 
 var db *sql.DB
@@ -28,11 +28,19 @@ func InitMysql() {
 	//dbConn := "root:yu271400@tcp(127.0.0.1:3306)/cmsproject?charset=utf8"
 	dbConn := user + ":" + pwd + "@tcp(" + host + ":" + port + ")/" + dbname + "?charset=utf8"
 	fmt.Println("dbconn:", dbConn)
-	err := orm.RegisterDataBase("default", driverName, dbConn)
+	// err := orm.RegisterDataBase("default", driverName, dbConn)
+	// if err != nil {
+	// 	fmt.Println("连接数据库出错......")
+	// } else {
+	// 	fmt.Println("连接数据库成功......")
+	// }
+	db1, err := sql.Open(driverName,dbConn)
 	if err != nil {
-		fmt.Println("连接数据库出错......")
+		fmt.Println("连接数据库爆粗，err=",err)
 	} else {
-		fmt.Println("连接数据库成功......")
+		db = db1
+		// 创建用户表
+		CreateTableWithUser()
 	}
 }
 
@@ -45,6 +53,20 @@ func CreateTableWithUser() {
 		status INT(4),
 		createtime INT(10)
 	);`
+	ModifyDB(sql)
+}
+
+// 创建文章表
+func CreateTableWithArticle(){
+	sql := `create table if noe exists article(
+			id int(4) primary key auto_increment not null,
+			title varchar(30),
+			author varchar(20),
+			tags varchar(30),
+			short varchar(255),
+			content longtext,
+			createtime int(10)
+			);`
 	ModifyDB(sql)
 }
 
@@ -66,12 +88,12 @@ func ModifyDB(sql string, args ...interface{}) (int64, error) {
 //查询数据库
 func QueryRowDB(sql string) *sql.Row {
 	row := db.QueryRow(sql)
-	fmt.Println("row：",row)
+	fmt.Println("row：", row)
 	return row
 }
 
 // 添加工具方法
-func MD5(str string) string{
-	md5str := fmt.Sprintf("%x",md5.Sum([]byte(str)))
+func MD5(str string) string {
+	md5str := fmt.Sprintf("%x", md5.Sum([]byte(str)))
 	return md5str
 }

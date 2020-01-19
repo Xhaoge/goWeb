@@ -7,6 +7,8 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/russross/blackfriday"
+	"html/template"
 	"log"
 )
 
@@ -92,7 +94,7 @@ func QueryRowDB(sql string) *sql.Row {
 	return row
 }
 
-func QueryDB(sql string)(*sql.rows, error){
+func QueryDB(sql string)(*sql.Rows, error){
 	return db.Query(sql)
 }
 
@@ -102,6 +104,8 @@ func MD5(str string) string {
 	return md5str
 }
 
-func SwitchTimeStampToData()(){
+func SwitchTimeStampToData(content string) template.HTML{
+	markdown := blackfriday.MarkdownCommon([]byte(content))
+
 
 }

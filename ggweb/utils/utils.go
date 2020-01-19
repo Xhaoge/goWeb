@@ -92,8 +92,16 @@ func QueryRowDB(sql string) *sql.Row {
 	return row
 }
 
+func QueryDB(sql string)(*sql.rows, error){
+	return db.Query(sql)
+}
+
 // 添加工具方法
 func MD5(str string) string {
 	md5str := fmt.Sprintf("%x", md5.Sum([]byte(str)))
 	return md5str
+}
+
+func SwitchTimeStampToData()(){
+
 }

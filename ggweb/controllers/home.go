@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"fmt"
+	"goWeb/ggweb/models"
 
 	"github.com/astaxie/beego"
 )
@@ -17,6 +18,12 @@ type HomeController struct {
 }
 
 func (this *HomeController) Get() {
+	page, _ := this.GetInt("page")
+	if page <= 0{
+		page = 1
+	}
+	var artList []models.Article
+	artList,_ := models.FindArticleWithPage(page)
 	fmt.Println("IsLogin:",this.IsLogin,this.Loginuser)
 	this.TplName = "home.html"
 }

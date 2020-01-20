@@ -1,13 +1,16 @@
 package utils
 
 import (
+	"bytes"
 	"crypto/md5"
 	"database/sql"
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/russross/blackfriday"
+	"github.com/sourcegraph/syntaxhighlight"
 	"html/template"
 	"log"
 )
@@ -104,8 +107,23 @@ func MD5(str string) string {
 	return md5str
 }
 
+// 将文章详情的内容 装换成html语句；
 func SwitchTimeStampToData(content string) template.HTML{
 	markdown := blackfriday.MarkdownCommon([]byte(content))
 
-
+	// 获取到html 文档；
+	doc,_ := goquery.NewDocumentFromReader(bytes.NewReader(markdown))
+	/*
+	对document 进程查询，选择器和css的语法一样；第一个参数 i是查询到的第几个元素；
+	第二个参数：selection 就是查询到的元素
+	*/
+	doc.Find("code").Each(func(i int, selection *goquery.Selection) {
+		light,_ := syntaxhighlight.AsHTML([]byte(selection.Text()))
+		selection.SetHtml(string(light))
+		fmt.Println(selection.Html())
+		fmt.Println("light:",string(light))
+		fmt.Println("\n\n\n")
+	})
+	htmlString, _ := doc.Html()
+	return template.HTML(htmlString)
 }

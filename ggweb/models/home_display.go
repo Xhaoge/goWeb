@@ -3,7 +3,6 @@ package models
 import (
 	"bytes"
 	"fmt"
-	"goWeb/ggweb/utils"
 	"html/template"
 	"strconv"
 )
@@ -44,7 +43,7 @@ func MakeHomeBlocks(articles []Article,isLogin bool) template.HTML{
 		fmt.Println("---------->tags",art.Tags)
 		homeParam.Short = art.Short
 		homeParam.Content = art.Content
-		homeParam.CreateTime = utils.SwitchTimeStampToData(art.Createtime)
+		homeParam.CreateTime =strconv.FormatInt(art.Createtime,10)
 		homeParam.Link = "/article/" + strconv.Itoa(art.Id)
 		homeParam.UpdateLink = "/article/update?id=" + strconv.Itoa(art.Id)
 		homeParam.DeleteLink = "/article/delete?id=" + strconv.Itoa(art.Id)

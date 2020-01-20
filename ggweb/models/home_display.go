@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"strconv"
+	"strings"
 )
 
 type HomeBlockParam struct {
@@ -59,4 +60,14 @@ func MakeHomeBlocks(articles []Article,isLogin bool) template.HTML{
 	}
 	fmt.Println("htmlhome------>",htmlHome)
 	return template.HTML(htmlHome)
+}
+
+// 将tags 字符串转化成首页模板所需要的 数据结构；
+func createTagsLinks(tags string) []TagLink {
+	var tagLink []TagLink
+	tagsPamar := strings.Split(tags, "&")
+	for _, tag := range tagsPamar {
+		tagLink = append(tagLink, TagLink{tag, "/?tag="+tag})
+	}
+	return tagLink
 }

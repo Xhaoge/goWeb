@@ -11,7 +11,7 @@ import (
 type HomeBlockParam struct {
 	Id 			int
 	Title 		string
-	Tags 		string
+	Tags 		[] TagLink
 	Short 		string
 	Content 	string
 	Author 		string
@@ -31,6 +31,15 @@ type TagLink struct {
 	TagUrl 		string
 }
 
+// 分页的结构体
+type HomeFooterPageCode struct {
+	HasPre		bool
+	HasNext 	bool
+	ShowPage 	string
+	PreLink 	string
+	NextLink 	string
+}
+
 func MakeHomeBlocks(articles []Article,isLogin bool) template.HTML{
 	fmt.Println("this is makehomeblocks")
 	htmlHome := ""
@@ -40,7 +49,7 @@ func MakeHomeBlocks(articles []Article,isLogin bool) template.HTML{
 		homeParam.Id = art.Id
 		homeParam.Title = art.Title
 		homeParam.Author = art.Author
-		homeParam.Tags = art.Tags
+		homeParam.Tags = createTagsLinks(art.Tags)
 		fmt.Println("---------->tags",art.Tags)
 		homeParam.Short = art.Short
 		homeParam.Content = art.Content
@@ -71,3 +80,5 @@ func createTagsLinks(tags string) []TagLink {
 	}
 	return tagLink
 }
+
+// 查询

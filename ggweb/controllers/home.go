@@ -18,13 +18,13 @@ type HomeController struct {
 }
 
 func (this *HomeController) Get() {
-	page, _ := this.GetInt("page")
-	if page <= 0{
+	page, err := this.GetInt("page")
+	if page <= 0 || err != nil{
 		page = 1
 	}
 	var artList []models.Article
 	artList, _ = models.FindArticleWithPage(page)
-	this.Data["PageCode"] = 1
+	this.Data["PageCode"] = models.ConfigHomeFooterPageCode(page)
 	this.Data["HasFooter"] = true
 	fmt.Println("IsLogin:",this.IsLogin,this.Loginuser)
 	this.Data["content"] = models.MakeHomeBlocks(artList,this.IsLogin)

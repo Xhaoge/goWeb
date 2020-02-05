@@ -19,7 +19,7 @@ type HomeController struct {
 
 func (this *HomeController) Get() {
 	page, err := this.GetInt("page")
-	if page <= 0 || err != nil{
+	if page <= 0 || err != nil {
 		page = 1
 	}
 	var artList []models.Article

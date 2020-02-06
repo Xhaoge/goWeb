@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"goWeb/ggweb/utils"
+	"log"
+	"strings"
 )
 
 type Article struct {
@@ -63,6 +65,23 @@ func FindArticleWithPage(page int)([]Article,error){
 	return QueryArticleWithPage(page,num)
 }
 
+//更新文章
+func UpdateArticle(art Article)(int64,error){
+	return utils.ModifyDB("select article set title=?,tags=?,short=?,content=? where id=?",art.Title,art.Tags,art.Short,art.Content,art.Id)
+}
+
+// 删除文章
+func DeleteArticle(artID Int) (int64,error){
+	i,err := deleteArticleWithArtId(artID)
+	SetArticleRowsNum()
+	return i,err
+}
+
+func deleteArticleWithArtId(artID int) (int64,error){
+	return utils.ModifyDB("delete from article where id=?",artID)
+}
+
+
 func QueryArticleWithPage(page,num int)([]Article,error){
 	sql := fmt.Sprintf("limit %d,%d",page*num,num)
 	return QueryArticlesWithCon(sql)
@@ -89,4 +108,44 @@ func QueryArticlesWithCon(sql string)([]Article,error){
 		artList = append(artList,art)
 	}
 	return artList,nil
+}
+
+func QueryArticleWithId(id int){
+	row := utils.QueryRowDB("select id,title,tags,short,content,author,createtime from article where id="+ strconv.Itoa(id))
+	title := ""
+	tags := ""
+	short := ""
+	content := ""
+	author := ""
+	var createtime int64
+	createtime = 0
+	row.Scan(&id, &title, &tags, &short, &content, &author, &createtime)
+	art := Article{id, title, tags, short, content, author, createtime}
+	return art
+}
+
+//查询标签，返回一个字段的列表
+func QueryArticleWithParam(param string) []string {
+	rows,_ := utils.QueryDB(fmt.Sprintf("select %s from article",param))
+	if err != nil {
+		log.Println(err)
+	}
+	var paramList []string
+	for rows.Next() {
+		arg := ""
+		rows.Scan(&arg)
+		paramList = append(paramList,arg)
+	}
+	return paramList
+}
+
+
+func HandleTagsListData(tags []string) map[string]int {
+	var tagsMap = make(map[string]int)
+	for _, tag := range tags {
+		taglist := strings.Split(tag,"&")
+		for _, value := range taglist {
+			tagsMap[value]++
+		}
+	}
 }

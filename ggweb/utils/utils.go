@@ -40,10 +40,11 @@ func InitMysql() {
 	// 	fmt.Println("连接数据库成功......")
 	// }
 	if db == nil {
-		db, err := sql.Open(driverName,dbConn)
+		db1, err := sql.Open(driverName,dbConn)
 		if err != nil {
 			fmt.Println("连接数据库出错，err=",err)
 		} else {
+			db = db1
 			// 创建用户表
 			CreateTableWithUser()
 			CreateTableWithArticle()

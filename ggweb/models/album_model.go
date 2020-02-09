@@ -23,6 +23,7 @@ func InsertAlbum(album Album) (int64,error) {
 // 查询图片
 func FindAllAlbums()([]Album, error){
 	rows, err := utils.QueryDB("select id,filepath,filename,status,createtime from album")
+	fmt.Println("查询图片rows：",rows)
 	if err != nil {
 		return nil, err
 	}

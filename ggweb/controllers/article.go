@@ -69,7 +69,7 @@ func (this *UpdateArticleController) Get(){
 	id,_ := this.GetInt("id")
 	fmt.Println("更新查询的id：",id)
 	// 先获取id所对应的文章信息；
-	art ：= models.QueryArticleWithId(id)
+	art := models.QueryArticleWithId(id)
 	this.Data["Title"] = art.Title
 	this.Data["Tags"] = art.Tags
 	this.Data["Short"] = art.Short
@@ -108,7 +108,7 @@ func (this *TagsController) Get() {
 
 func (this *DeleteArticleController) Get(){
 	artID,_ := this.GetInt("id")
-	fmt.Println("需要删除的id为：",.artID)
+	fmt.Println("需要删除的id为：",artID)
 	_,err := models.DeleteArticle(artID)
 	if err != nil {
 		log.Println(err)

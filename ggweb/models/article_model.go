@@ -5,6 +5,7 @@ import (
 	"github.com/astaxie/beego"
 	"goWeb/ggweb/utils"
 	"log"
+	"strconv"
 	"strings"
 )
 
@@ -71,7 +72,7 @@ func UpdateArticle(art Article)(int64,error){
 }
 
 // 删除文章
-func DeleteArticle(artID Int) (int64,error){
+func DeleteArticle(artID int) (int64,error){
 	i,err := deleteArticleWithArtId(artID)
 	SetArticleRowsNum()
 	return i,err
@@ -110,7 +111,7 @@ func QueryArticlesWithCon(sql string)([]Article,error){
 	return artList,nil
 }
 
-func QueryArticleWithId(id int){
+func QueryArticleWithId(id int) Article{
 	row := utils.QueryRowDB("select id,title,tags,short,content,author,createtime from article where id="+ strconv.Itoa(id))
 	title := ""
 	tags := ""
@@ -126,7 +127,7 @@ func QueryArticleWithId(id int){
 
 //查询参数，返回一个字段的列表
 func QueryArticleWithParam(param string) []string {
-	rows,_ := utils.QueryDB(fmt.Sprintf("select %s from article",param))
+	rows, err  := utils.QueryDB(fmt.Sprintf("select %s from article",param))
 	if err != nil {
 		log.Println(err)
 	}
@@ -157,4 +158,5 @@ func HandleTagsListData(tags []string) map[string]int {
 			tagsMap[value]++
 		}
 	}
+	return tagsMap
 }

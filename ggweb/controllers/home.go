@@ -24,7 +24,7 @@ func (this *HomeController) Get() {
 	var artList []models.Article
 	if len(tag) > 0 {
 		// 按照指定的标签搜索
-		artList, _ = models.QueryArticleWithTag(tag)
+		artList, _ = models.QueryArticlesWithTag(tag)
 		this.Data["HasFooter"] = false
 	}else {
 		if page <= 0 || err != nil {

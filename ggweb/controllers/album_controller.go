@@ -55,7 +55,7 @@ func (this *UploadController) Post() {
 	}
 	//文件路径
 	timeStamp := time.Now().Unix()
-	fileName := fmr.Sprintf("%d-%s",timeStamp,fileHeader.Filename)
+	fileName := fmt.Sprintf("%d-%s",timeStamp,fileHeader.Filename)
 	filePathStr := filepath.Join(fileDir, fileName)
 	desFile, err := os.Create(filePathStr)
 	if err != nil {

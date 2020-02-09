@@ -20,4 +20,8 @@ func init() {
 	beego.Router("/article/delete",&controllers.DeleteArticleController{})
 	// 标签
 	beego.Router("/tags",&controllers.TagsController{})
+	// 相册
+	beego.Router("/album", &controllers.AlbumController{})
+	// 文件上传
+	beego.Router("/upload", &controllers.UploadController{})
 }

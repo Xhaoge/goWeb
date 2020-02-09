@@ -124,7 +124,7 @@ func QueryArticleWithId(id int){
 	return art
 }
 
-//查询标签，返回一个字段的列表
+//查询参数，返回一个字段的列表
 func QueryArticleWithParam(param string) []string {
 	rows,_ := utils.QueryDB(fmt.Sprintf("select %s from article",param))
 	if err != nil {
@@ -139,6 +139,15 @@ func QueryArticleWithParam(param string) []string {
 	return paramList
 }
 
+// 按照标签查询，返回一个Article 数组
+func QueryArticlesWithTag(tag string) ([]Article, error) {
+	sql := " where tags like '%&" + tag +  "&%'"
+	sql += " or tags like '%&" + tag +"'"
+	sql += " or tags like '" +tag + "&%'"
+	sql += " or tags like '" + tag +"'"
+	fmt.Println("查询标签sql语句：",sql)
+	return QueryArticlesWithCon(sql)
+}
 
 func HandleTagsListData(tags []string) map[string]int {
 	var tagsMap = make(map[string]int)

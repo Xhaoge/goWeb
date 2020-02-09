@@ -39,13 +39,16 @@ func InitMysql() {
 	// } else {
 	// 	fmt.Println("连接数据库成功......")
 	// }
-	db1, err := sql.Open(driverName,dbConn)
-	if err != nil {
-		fmt.Println("连接数据库爆粗，err=",err)
-	} else {
-		db = db1
-		// 创建用户表
-		CreateTableWithUser()
+	if db == nil {
+		db, err := sql.Open(driverName,dbConn)
+		if err != nil {
+			fmt.Println("连接数据库出错，err=",err)
+		} else {
+			// 创建用户表
+			CreateTableWithUser()
+			CreateTableWithArticle()
+			CreateTableWithAlbum()
+		}
 	}
 }
 
@@ -72,6 +75,18 @@ func CreateTableWithArticle(){
 			content longtext,
 			createtime int(10)
 			);`
+	ModifyDB(sql)
+}
+
+// 创建图片表
+func CreateTableWithAlbum() {
+	sql := `create table if not exists album(
+		id int(4) primary key auto_increment not null,
+		filepath varchar(255),
+		filename varchar(64),
+		status int(4),
+		createtime int(10)
+	);`
 	ModifyDB(sql)
 }
 

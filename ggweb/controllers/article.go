@@ -23,6 +23,11 @@ type DeleteArticleController struct{
 	BaseController
 }
 
+type ShowArticleController struct{
+	BaseController
+} 
+
+
 /*
 	当访问/add 路径的时候触发AddArticleController的get方法，响应的页面但是通过tplname
 */
@@ -109,4 +114,16 @@ func (this *DeleteArticleController) Get(){
 		log.Println(err)
 	}
 	this.Redirect("/",302)
+}
+
+// 展示文章详细信息的controller
+func (this *ShowArticleController) Get(){
+	idStr := this.Ctx.Input.Param(":id")
+	id,_ := strconv.Atoi(idStr)
+	fmt.Println("id: ",id)
+	// 获取id所对应的文章信息
+	art := models.QueryArticleWithId(id)
+	this.Data["Title"] = art.Title
+	this.Data["Content"] = art.Content
+	this.TplName = "show_article.html"
 }
